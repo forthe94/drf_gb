@@ -20,7 +20,7 @@ from user.views import UserModelViewSet
 
 
 router = DefaultRouter()
-router.register('authors', UserModelViewSet)
+router.register('users', UserModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
