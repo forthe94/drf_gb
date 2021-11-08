@@ -1,3 +1,4 @@
+from django.http import Http404
 from rest_framework.generics import get_object_or_404
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
@@ -34,9 +35,10 @@ class ToDoModelViewSet(ModelViewSet):
     }
 
     def destroy(self, request, pk=None):
-        article = get_object_or_404(ToDo, pk=pk)
-        if not article:
+        try:
+            todo = get_object_or_404(ToDo, pk=pk)
+        except Http404:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        article.is_active = False
-        article.save()
+        todo.is_active = False
+        todo.save()
         return Response(status=status.HTTP_200_OK)

@@ -16,6 +16,7 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
 class ToDoModelSerializer(HyperlinkedModelSerializer):
     project = serializers.SlugRelatedField(queryset=Project.objects.all(), slug_field='name')
     user = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username')
+    is_active = serializers.BooleanField(initial=True)
 
     class Meta:
         model = ToDo
