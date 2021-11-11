@@ -2,9 +2,11 @@ from rest_framework.serializers import HyperlinkedModelSerializer
 from .models import Project, ToDo
 from rest_framework import serializers
 
+from user.models import User
+
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
-    users = serializers.StringRelatedField(many=True)
+    users = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username')
 
     class Meta:
         model = Project
@@ -12,8 +14,9 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
 
 
 class ToDoModelSerializer(HyperlinkedModelSerializer):
-    project = serializers.StringRelatedField()
-    user = serializers.StringRelatedField()
+    project = serializers.SlugRelatedField(queryset=Project.objects.all(), slug_field='name')
+    user = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username')
+    is_active = serializers.BooleanField(initial=True)
 
     class Meta:
         model = ToDo
