@@ -6,7 +6,7 @@ from user.models import User
 
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
-    users = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username')
+    # users = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username')
 
     class Meta:
         model = Project
