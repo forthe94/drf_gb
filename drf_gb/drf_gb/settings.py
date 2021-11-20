@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'corsheaders',
     'TODO',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,11 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
         # Any other renders
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 
     'DEFAULT_PARSER_CLASSES': (
         # If you use MultiPartFormParser or FormParser, we also have a camel case version
