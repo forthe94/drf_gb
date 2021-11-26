@@ -1,0 +1,21 @@
+{
+  projectById(projectId:1){
+    id
+    name
+    repository
+    users{
+      username
+      email
+    }
+    todos(isActive: true){
+      edges {
+        node{
+          isActive
+          title
+          text
+        }
+      }
+    }
+  }
+}
+
